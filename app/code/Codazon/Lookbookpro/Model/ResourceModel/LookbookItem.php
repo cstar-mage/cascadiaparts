@@ -135,6 +135,10 @@ class LookbookItem extends \Magento\Eav\Model\Entity\AbstractEntity
     {
         $applyTo = $attribute->getApplyTo();
 
+        if (is_null($applyTo)) {
+            return true;
+        }
+
         return (count($applyTo) == 0 || in_array($object->getTypeId(), $applyTo))
             && $attribute->isInSet($object->getAttributeSetId());
     }
